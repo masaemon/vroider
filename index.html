@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <title>VroidQuaternion</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <link rel="stylesheet" type="text/css" href="./main.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.7.5/css/bulma.min.css">
+  <script defer src="https://use.fontawesome.com/releases/v5.3.1/js/all.js"></script>
+  <script src="threejs/three.js"></script>
+  <script src="threejs/js/loaders/VRMLoader.js"></script>
+  <script src="threejs/js/loaders/GLTFLoader.js"></script>
+  <script src="threejs/js/WebGL.js"></script>
+  <script src="threejs/js/controls/OrbitControls.js"></script>
+  <script src="./Quaternion.js"></script>
+  <script src="./Vector.js"></script>
+</head>
+<body>
+<nav class="navbar has-shadow">
+  <div class="navbar-brand">
+    <p class="navbar-item title is-3">
+      Vroider
+    </p>
+  </div>
+</nav>
+  <section class="section">
+    <div class="container">
+      <h1 class="title is-2">
+        クォータニオン
+      </h1>
+      <div>
+        下のスライダーからクォータニオンの値を操作できます。
+        また、角度と軸のベクトルを入力することで、回転できます。
+      </div>
+    </div>
+    <div id="app" class="container">
+      <div class="columns">
+        <div class="column is-two-thirds">
+          <div class="container">
+            <canvas id="myCanvas"></canvas>
+          </div>
+        </div>
+        <div class="column">
+          <div class="container">
+            <p class="title is-4">
+              体のパーツ
+            </p>
+            <div class="select">
+              <select id="bodyparts"></select>
+            </div>
+            <br>
+            <br>
+            <p class="title is-4">クォータニオン</p>
+            <span class="title is-4">
+              X
+            </span>
+            <input type="range" id="qx" class="slider" value="0" min="-1" max="1" data-unit="%" step="any">
+            <br>
+            <span class="title is-4">
+              Y
+            </span>
+            <input type="range" id="qy" class="slider" value="0" min="-1" max="1" data-unit="%" step="any">
+            <br>
+            <span class="title is-4">
+              Z
+            </span>
+            <input type="range" id="qz" class="slider" value="0" min="-1" max="1" data-unit="%" step="any">
+            <br>
+            <span class="title is-4">
+              W
+            </span>
+            <input type="range" id="qw" class="slider" value="1" min="-1" max="1" data-unit="%" step="any">
+            <br>
+            <br>
+            <p class="title is-4">
+              回転角度とベクトル
+            </p>
+            <span class="title is-5">
+              回転角度(度)
+            </span>
+            <input id="angle" class="input" type="text" placeholder="angle">
+            <span class="title is-5">
+              VectorX
+            </span>
+            <input id="vx" class="input" type="text" placeholder="vecX">
+            <span class="title is-5">
+              VectorY
+            </span>
+            <input id="vy" class="input" type="text" placeholder="vecY">
+            <span class="title is-5">
+              VectorZ
+            </span>
+            <input id="vz" class="input" type="text" placeholder="vecZ">
+            <br>
+            <br>
+            <button id="vector" class="button is-info">
+              ベクトルを軸に回転する
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+</body>
+<script src="./main.js"></script>
+</html>
