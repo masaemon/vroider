@@ -123,77 +123,77 @@
             <span class="title is-5">
               回転角度(度)
             </span>
-            <input id="angle" class="input" type="text" placeholder="angle" disabled>
+            <input id="angle" class="input" type="number" placeholder="angle" disabled>
             <span class="title is-5">
               VectorX
             </span>
-            <input id="vx" class="input" type="text" placeholder="vecX" disabled>
+            <input id="vx" class="input" type="number" placeholder="vecX" disabled>
             <span class="title is-5">
               VectorY
             </span>
-            <input id="vy" class="input" type="text" placeholder="vecY" disabled>
+            <input id="vy" class="input" type="number" placeholder="vecY" disabled>
             <span class="title is-5">
               VectorZ
             </span>
-            <input id="vz" class="input" type="text" placeholder="vecZ" disabled>
+            <input id="vz" class="input" type="number" placeholder="vecZ" disabled>
             <br>
             <br>
 
             <p class="title is-4">回転行列</p>
             <div class="columns">
               <div class="column">
-                <input id="a11" class="input" type="text" placeholder="0" disabled>
+                <input id="a11" class="input" type="number" placeholder="0" disabled>
               </div>
               <div class="column">
-                <input id="a12" class="input" type="text" placeholder="0" disabled>
+                <input id="a12" class="input" type="number" placeholder="0" disabled>
               </div>
               <div class="column">
-                <input id="a13" class="input" type="text" placeholder="0" disabled>
+                <input id="a13" class="input" type="number" placeholder="0" disabled>
               </div>
               <div class="column">
-                <input id="a14" class="input" type="text" placeholder="0" disabled>
-              </div>
-            </div>
-            <div class="columns">
-              <div class="column">
-                <input id="a21" class="input" type="text" placeholder="0" disabled>
-              </div>
-              <div class="column">
-                <input id="a22" class="input" type="text" placeholder="0" disabled>
-              </div>
-              <div class="column">
-                <input id="a23" class="input" type="text" placeholder="0" disabled>
-              </div>
-              <div class="column">
-                <input id="a24" class="input" type="text" placeholder="0" disabled>
+                <input id="a14" class="input" type="number" placeholder="0" disabled>
               </div>
             </div>
             <div class="columns">
               <div class="column">
-                <input id="a31" class="input" type="text" placeholder="0" disabled>
+                <input id="a21" class="input" type="number" placeholder="0" disabled>
               </div>
               <div class="column">
-                <input id="a32" class="input" type="text" placeholder="0" disabled>
+                <input id="a22" class="input" type="number" placeholder="0" disabled>
               </div>
               <div class="column">
-                <input id="a33" class="input" type="text" placeholder="0" disabled>
+                <input id="a23" class="input" type="number" placeholder="0" disabled>
               </div>
               <div class="column">
-                <input id="a34" class="input" type="text" placeholder="0" disabled>
+                <input id="a24" class="input" type="number" placeholder="0" disabled>
               </div>
             </div>
             <div class="columns">
               <div class="column">
-                <input id="a41" class="input" type="text" placeholder="0" disabled>
+                <input id="a31" class="input" type="number" placeholder="0" disabled>
               </div>
               <div class="column">
-                <input id="a42" class="input" type="text" placeholder="0" disabled>
+                <input id="a32" class="input" type="number" placeholder="0" disabled>
               </div>
               <div class="column">
-                <input id="a43" class="input" type="text" placeholder="0" disabled>
+                <input id="a33" class="input" type="number" placeholder="0" disabled>
               </div>
               <div class="column">
-                <input id="a44" class="input" type="text" placeholder="0" disabled>
+                <input id="a34" class="input" type="number" placeholder="0" disabled>
+              </div>
+            </div>
+            <div class="columns">
+              <div class="column">
+                <input id="a41" class="input" type="number" placeholder="0" disabled>
+              </div>
+              <div class="column">
+                <input id="a42" class="input" type="number" placeholder="0" disabled>
+              </div>
+              <div class="column">
+                <input id="a43" class="input" type="number" placeholder="0" disabled>
+              </div>
+              <div class="column">
+                <input id="a44" class="input" type="number" placeholder="0" disabled>
               </div>
             </div>
 
@@ -826,26 +826,46 @@
         vecx = parseFloat(document.getElementById("vx").value);
         vecy = parseFloat(document.getElementById("vy").value);
         vecz = parseFloat(document.getElementById("vz").value);
+        if(angle === "") angle = 0;
+        if(vecx === "") vecx = 0;
+        if(vecy === "") vecx = 0;
+        if(vecz === "") vecx = 0;
         vector = new Vector(vecx, vecy, vecz);
         rotateVec(vector, angle);
         break;
       case "Matrix":
-        const a11 = parseFloat(document.getElementById("a11").value);
-        const a12 = parseFloat(document.getElementById("a12").value);
-        const a13 = parseFloat(document.getElementById("a13").value);
-        const a14 = parseFloat(document.getElementById("a14").value);
-        const a21 = parseFloat(document.getElementById("a21").value);
-        const a22 = parseFloat(document.getElementById("a22").value);
-        const a23 = parseFloat(document.getElementById("a23").value);
-        const a24 = parseFloat(document.getElementById("a24").value);
-        const a31 = parseFloat(document.getElementById("a31").value);
-        const a32 = parseFloat(document.getElementById("a32").value);
-        const a33 = parseFloat(document.getElementById("a33").value);
-        const a34 = parseFloat(document.getElementById("a34").value);
-        const a41 = parseFloat(document.getElementById("a41").value);
-        const a42 = parseFloat(document.getElementById("a42").value);
-        const a43 = parseFloat(document.getElementById("a43").value);
-        const a44 = parseFloat(document.getElementById("a44").value);
+        let a11 = parseFloat(document.getElementById("a11").value);
+        let a12 = parseFloat(document.getElementById("a12").value);
+        let a13 = parseFloat(document.getElementById("a13").value);
+        let a14 = parseFloat(document.getElementById("a14").value);
+        let a21 = parseFloat(document.getElementById("a21").value);
+        let a22 = parseFloat(document.getElementById("a22").value);
+        let a23 = parseFloat(document.getElementById("a23").value);
+        let a24 = parseFloat(document.getElementById("a24").value);
+        let a31 = parseFloat(document.getElementById("a31").value);
+        let a32 = parseFloat(document.getElementById("a32").value);
+        let a33 = parseFloat(document.getElementById("a33").value);
+        let a34 = parseFloat(document.getElementById("a34").value);
+        let a41 = parseFloat(document.getElementById("a41").value);
+        let a42 = parseFloat(document.getElementById("a42").value);
+        let a43 = parseFloat(document.getElementById("a43").value);
+        let a44 = parseFloat(document.getElementById("a44").value);
+        if(a11 === "") a11 = 1;
+        if(a12 === "") a12 = 1;
+        if(a13 === "") a13 = 1;
+        if(a14 === "") a14 = 1;
+        if(a21 === "") a21 = 1;
+        if(a22 === "") a22 = 1;
+        if(a23 === "") a23 = 1;
+        if(a24 === "") a24 = 1;
+        if(a31 === "") a31 = 1;
+        if(a32 === "") a32 = 1;
+        if(a33 === "") a33 = 1;
+        if(a34 === "") a34 = 1;
+        if(a41 === "") a41 = 1;
+        if(a42 === "") a42 = 1;
+        if(a43 === "") a43 = 1;
+        if(a44 === "") a44 = 1;
         matrix = new Matrix4d(a11, a12, a13, a14,
           a21, a22, a23, a24,
           a31, a32, a33, a34,
@@ -940,7 +960,8 @@
 
     const rotationParts = boneMap.get(parts).bone.quaternion;
 
-    quat = new Quaternion(rotationParts._x, rotationParts._y, rotationParts._z, rotationParts._w);
+    quat = QuaternionNormalize(new Quaternion(rotationParts._x, rotationParts._y, rotationParts._z, rotationParts._w));
+
 
     document.getElementById("qx").value = quat.x;
     document.getElementById("qy").value = quat.y;
@@ -950,6 +971,33 @@
     document.getElementById("valueqy").innerHTML = quat.y;
     document.getElementById("valueqz").innerHTML = quat.z;
     document.getElementById("valueqw").innerHTML = quat.w;
+
+    const angle = QuaternionToRotationAngle(quat);
+    const vec = QuaternionToVector(quat, angle);
+    const normalVector = NormalizeVector(vec);
+
+    document.getElementById("angle").value = angle;
+    document.getElementById("vx").value = normalVector.x;
+    document.getElementById("vy").value = normalVector.y;
+    document.getElementById("vz").value = normalVector.z;
+
+    const mt = QuaternionToMatrix(quat);
+    document.getElementById("a11").value = mt.a11;
+    document.getElementById("a12").value = mt.a12;
+    document.getElementById("a13").value = mt.a13;
+    document.getElementById("a14").value = mt.a14;
+    document.getElementById("a21").value = mt.a21;
+    document.getElementById("a22").value = mt.a22;
+    document.getElementById("a23").value = mt.a23;
+    document.getElementById("a24").value = mt.a24;
+    document.getElementById("a31").value = mt.a31;
+    document.getElementById("a32").value = mt.a32;
+    document.getElementById("a33").value = mt.a33;
+    document.getElementById("a34").value = mt.a34;
+    document.getElementById("a41").value = mt.a41;
+    document.getElementById("a42").value = mt.a42;
+    document.getElementById("a43").value = mt.a43;
+    document.getElementById("a44").value = mt.a44;
   });
 
   function onRadioButtonChange() {
