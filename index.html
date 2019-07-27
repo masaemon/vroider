@@ -47,14 +47,14 @@
 <nav class="navbar has-shadow">
   <div class="navbar-brand">
     <p class="navbar-item title is-3">
-      Vroider
+      VRoider
     </p>
   </div>
 </nav>
   <section class="section">
     <div class="container">
       <h1 class="title is-2">
-        Vroidモデルを回転させる
+        VRoidモデルを回転させる
       </h1>
       <div>
         下のラジオボタンで回転させる方法を選びましょう。
@@ -873,7 +873,12 @@
         rotateMatrix(matrix);
         break;
       case "Auto":
-        autoRotation = true;
+        if(!autoRotation) {
+          autoRotation = true;
+          autoRotateInit();
+        } else {
+          autoRotation = false;
+        }
         break;
     }
   }
@@ -1027,8 +1032,11 @@
     } else if(radiobtn4.checked == true) {
       method = "Auto";
       limitFunction(method);
-      initAutoRotate();
-      document.getElementById("btn").innerHTML = "自動回転開始";
+      if(autoRotation == false) {
+        document.getElementById("btn").innerHTML = "自動回転開始";
+      } else {
+        document.getElementById("btn").innerHTML = "自動回転停止";
+      }
     }
   }
 
