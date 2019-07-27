@@ -4,7 +4,6 @@
   <meta charset="UTF-8">
   <title>VroidQuaternion</title>
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
-  <link rel="stylesheet" type="text/css" href="./main.css">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.7.5/css/bulma.min.css">
   <script defer src="https://use.fontawesome.com/releases/v5.3.1/js/all.js"></script>
   <script src="threejs/three.js"></script>
@@ -12,8 +11,37 @@
   <script src="threejs/js/loaders/GLTFLoader.js"></script>
   <script src="threejs/js/WebGL.js"></script>
   <script src="threejs/js/controls/OrbitControls.js"></script>
-  <script src="./Quaternion.js"></script>
-  <script src="./Vector.js"></script>
+  <style>
+    .slider[type="range"] {
+      -webkit-appearance: none;
+      appearance: none;
+      background-color: #c7c7c7;
+      height: 2px;
+      width: 100%;
+    }
+
+    .slider:focus {
+      outline: none;
+    }
+
+    .slider:active {
+      outline: none;
+     }
+
+    .slider::-webkit-slider-thumb {
+       -webkit-appearance: none;
+       appearance: none;
+       cursor: pointer;
+       position: relative;
+       border: none;
+       width: 12px;
+       height: 12px;
+       display: block;
+       background-color: #262626;
+       border-radius: 50%;
+       -webkit-border-radius: 50%;
+     }
+  </style>
 </head>
 <body>
 <nav class="navbar has-shadow">
@@ -42,6 +70,7 @@
         </div>
         <div class="column">
           <div class="container">
+
             <p class="title is-4">
               体のパーツ
             </p>
@@ -50,28 +79,35 @@
             </div>
             <br>
             <br>
+
             <p class="title is-4">クォータニオン</p>
             <span class="title is-4">
-              X
+              X:
+            </span>
+            <span id="valueqx" class="title is-4">
             </span>
             <input type="range" id="qx" class="slider" value="0" min="-1" max="1" data-unit="%" step="any">
             <br>
             <span class="title is-4">
-              Y
+              Y:
             </span>
+            <span id="valueqy" class="title is-4"></span>
             <input type="range" id="qy" class="slider" value="0" min="-1" max="1" data-unit="%" step="any">
             <br>
             <span class="title is-4">
-              Z
+              Z:
             </span>
+            <span id="valueqz" class="title is-4"></span>
             <input type="range" id="qz" class="slider" value="0" min="-1" max="1" data-unit="%" step="any">
             <br>
             <span class="title is-4">
-              W
+              W:
             </span>
+            <span id="valueqw" class="title is-4"></span>
             <input type="range" id="qw" class="slider" value="1" min="-1" max="1" data-unit="%" step="any">
             <br>
             <br>
+
             <p class="title is-4">
               回転角度とベクトル
             </p>
@@ -93,8 +129,101 @@
             <input id="vz" class="input" type="text" placeholder="vecZ">
             <br>
             <br>
-            <button id="vector" class="button is-info">
-              ベクトルを軸に回転する
+
+            <p class="title is-4">回転行列</p>
+            <div class="columns">
+              <div class="column">
+                <input id="a11" class="input" type="text" placeholder="0">
+              </div>
+              <div class="column">
+                <input id="a12" class="input" type="text" placeholder="0">
+              </div>
+              <div class="column">
+                <input id="a13" class="input" type="text" placeholder="0">
+              </div>
+              <div class="column">
+                <input id="a14" class="input" type="text" placeholder="0">
+              </div>
+            </div>
+            <div class="columns">
+              <div class="column">
+                <input id="a21" class="input" type="text" placeholder="0">
+              </div>
+              <div class="column">
+                <input id="a22" class="input" type="text" placeholder="0">
+              </div>
+              <div class="column">
+                <input id="a23" class="input" type="text" placeholder="0">
+              </div>
+              <div class="column">
+                <input id="a24" class="input" type="text" placeholder="0">
+              </div>
+            </div>
+            <div class="columns">
+              <div class="column">
+                <input id="a31" class="input" type="text" placeholder="0">
+              </div>
+              <div class="column">
+                <input id="a32" class="input" type="text" placeholder="0">
+              </div>
+              <div class="column">
+                <input id="a33" class="input" type="text" placeholder="0">
+              </div>
+              <div class="column">
+                <input id="a34" class="input" type="text" placeholder="0">
+              </div>
+            </div>
+            <div class="columns">
+              <div class="column">
+                <input id="a41" class="input" type="text" placeholder="0">
+              </div>
+              <div class="column">
+                <input id="a42" class="input" type="text" placeholder="0">
+              </div>
+              <div class="column">
+                <input id="a43" class="input" type="text" placeholder="0">
+              </div>
+              <div class="column">
+                <input id="a44" class="input" type="text" placeholder="0">
+              </div>
+            </div>
+
+
+            <div class="control">
+              <p class="title is-4">回転方法</p>
+              <label class="radio">
+                <input
+                        id="r1"
+                        type="radio"
+                        name="method"
+                        onchange="onRadioButtonChange()"
+                >
+                クォータニオン
+              </label>
+              <br>
+              <label class="radio">
+                <input
+                        id="r2"
+                        type="radio"
+                        name="method"
+                        onchange="onRadioButtonChange()"
+                >
+                回転角度とベクトル
+              </label>
+              <br>
+              <label class="radio">
+                <input
+                        id="r3"
+                        type="radio"
+                        name="method"
+                        onchange="onRadioButtonChange()"
+                >
+                回転行列
+              </label>
+            </div>
+            <br>
+            <button id="btn" class="button is-info" onclick="rotateParts()" disabled>
+             選択してください。
             </button>
           </div>
         </div>
@@ -102,5 +231,412 @@
     </div>
   </section>
 </body>
-<script src="./main.js"></script>
+<script>
+  //サイン
+  function sin(x) {
+    return Math.sin(x);
+  }
+
+  //コサイン
+  function cos(x) {
+    return Math.cos(x);
+  }
+
+  //ルート
+  function sqrt(x) {
+    return Math.sqrt(x);
+  }
+
+  //ベクトルクラス
+  class Vector {
+    constructor(x, y, z) {
+      this.x = x;
+      this.y = y;
+      this.z = z;
+    }
+  }
+
+  //クォータニオンクラス
+  class Quaternion {
+    constructor(x, y, z, w) {
+      this.x = x;
+      this.y = y;
+      this.z = z;
+      this.w = w;
+    }
+
+    get ToString() {
+      return "("+ this.x +")I+" + "("+ this.y +")J+" + "("+ this.z +")K+" + "("+ this.w +")";
+    }
+
+    //vec is Vector
+    static AngleAxis(radian, vec) {
+      const a = vec.x;
+      const b = vec.y;
+      const c = vec.z;
+      const magnitude = sqrt(a*a + b*b + c*c);
+      const t2 = radian*0.5;
+      return new Quaternion(
+        a*sin(t2) / magnitude,
+        b*sin(t2) / magnitude,
+        c*sin(t2) / magnitude,
+        cos(t2)
+      );
+    }
+  }
+
+  //マトリクスクラス
+  class Matrix4d {
+    constructor(
+      a11, a12, a13, a14,
+      a21, a22, a23, a24,
+      a31, a32, a33, a34,
+      a41, a42, a43, a44
+    ) {
+      this.a11 = a11;
+      this.a12 = a12;
+      this.a13 = a13;
+      this.a14 = a14;
+      this.a21 = a21;
+      this.a22 = a22;
+      this.a23 = a23;
+      this.a24 = a24;
+      this.a31 = a31;
+      this.a32 = a32;
+      this.a33 = a33;
+      this.a34 = a34;
+      this.a41 = a41;
+      this.a42 = a42;
+      this.a43 = a43;
+      this.a44 = a44;
+    }
+
+
+  }
+
+  function QuaternionNormalize(q) {
+    const magnitude = sqrt(q.x*q.x + q.y*q.y + q.z*q.z + q.w*q.w);
+    return new Quaternion(q.x/magnitude, q.y/magnitude, q.z/magnitude, q.w/magnitude);
+  }
+
+  //p is Quaternion, q is Quaternion
+  function QuaternionSum(p, q) {
+    return new Quaternion (p.x+q.x, p.y+q.y, p.z+q.z, p.w+q.w);
+  }
+
+  //p is Quaternion, q is Quaternion
+  function QuaternionPlus(p, q) {
+    return new Quaternion (p.x-q.x, p.y-q.y, p.z-q.z, p.w-q.w);
+  }
+
+  //p is Quaternion, q is Quaternion
+  function QuaternionProduct(p, q) {
+    return new Quaternion (
+      p.x*q.w + p.y*q.z - p.z*q.y + p.w*q.x,
+      - p.x*q.z + p.y*q.w + p.z*q.x + p.w*q.y,
+      p.x*q.y - p.y*q.x + p.z*q.w + p.w*q.z,
+      - p.x*q.x - p.y*q.y - p.z*q.z + p.w*q.w
+    );
+  }
+
+  //p is Quaternion
+  function QuaternionInverse(q) {
+    denom =  q.x*q.x + q.y*q.y + q.z*q.z + q.w*q.w;
+    return new Quaternion(-q.x/denom, -q.y/denom, -q.z/denom, q.w/denom);
+  }
+
+  //p is Quaternion, v is Vector
+  function Dot(q, v){
+    q1 = QuaternionInverse(q);
+    p = new Quaternion(v.x,v.y,v.z,0);
+    h1 = QuaternionProduct(q,p);
+    h2 = QuaternionProduct(h1,q1);
+    return new Vector(h2.x, h2.y, h2.z);
+  }
+
+  //回転方法
+  let method;
+
+  //画面
+  let width;
+  let height;
+
+  //three.js関連
+  let renderer;
+  let controls;
+  let camera;
+  const scene = new THREE.Scene();
+
+  //vroidのボーン
+  let bone;
+  let boneMap = new Map();
+  let parts;
+
+  //vroid部位
+  let humanoidParts = [];
+
+  //vroid モデル
+  const humanoidModel = {
+    leem: "./leem.vrm"
+  };
+
+  //vroidモデル読み込み
+  let RESOURCE_LOADED = false;
+
+  //初期化
+  function setup() {
+    const canvas = document.getElementById("myCanvas");
+    const parent = canvas.parentNode;
+    canvas.width = parent.clientWidth;
+    canvas.height = parent.clientHeight;
+
+    renderer = new THREE.WebGLRenderer({
+      canvas: document.querySelector('#myCanvas')
+    });
+
+    width = parent.clientWidth;
+    height = 800;
+    renderer.setPixelRatio(window.devicePixelRatio);
+    renderer.setSize(width, height);
+    renderer.setClearColor(0xf6f6f6, 1.0);
+
+    //ライト
+    const ambientLight = new THREE.AmbientLight(0xffffff, 0.2);
+    scene.add(ambientLight);
+
+    //点光源
+    const light = new THREE.PointLight(0xffffff, 0.8, 18);
+    light.position.set(-3, 6, -3);
+    light.castShadow = true;
+    light.shadow.camera.near = 0.1;
+    light.shadow.camera.far = 10000;
+    scene.add(light);
+
+    camera = new THREE.PerspectiveCamera(90, width / height, 0.1, 100);
+    camera.rotation.set(
+      camera.rotation.x += Math.PI / 2,
+      camera.rotation.y += Math.PI / 2,
+      camera.rotation.z += Math.PI / 2
+    );
+
+    camera.position.set(0, 1.5, -1);
+    camera.lookAt(0, 0, 0);
+
+    controls = new THREE.OrbitControls(camera, renderer.domElement);
+    controls.target.set(0, 1, 0);
+    controls.update();
+
+    //vroidを読み込むもの
+    const loader = new THREE.VRMLoader();
+    loader.load(humanoidModel.leem, function(vrm) {
+      console.log(vrm);
+      bones = vrm.parser.json.extensions.VRM.humanoid.humanBones;
+
+      //ボーンとモデルの紐付け
+      boneMap = new Map();
+      for(let key in bones) {
+        let target = bones[key];
+
+        boneMap.set(target.bone,
+          {
+            name: vrm.parser.json.nodes[target.node].name,
+            bone: vrm.scene.getObjectByName(vrm.parser.json.nodes[target.node].name, true)
+          }
+        );
+
+        const op = document.createElement("option");
+        op.value = target.bone;
+        op.text = target.bone;
+        document.getElementById("bodyparts").appendChild(op);
+      }
+      scene.add(vrm.scene);
+
+      RESOURCES_LOADED = true;
+    });
+
+    draw();
+  }
+
+  //ループするところ
+  function draw() {
+    renderer.render(scene, camera);
+    requestAnimationFrame(draw);
+  }
+
+  // 画面のリサイズした時の処理
+  window.addEventListener('resize', onResize);
+  function onResize() {
+    const canvas = document.getElementById("myCanvas");
+    const parent = canvas.parentNode;
+
+    width = parent.clientWidth;
+    height = 800;
+
+    renderer.setPixelRatio(window.devicePixelRatio);
+    renderer.setSize(width, height);
+    renderer.setClearColor(0xf6f6f6, 1.0);
+  }
+
+  // スライダー
+  const sliders = document.getElementsByClassName("slider");
+  for(let i = 0; i < 4; i++) {
+    sliders[i].addEventListener('input', () => {
+
+      qx = document.getElementById("qx").value;
+      qy = document.getElementById("qy").value;
+      qz = document.getElementById("qz").value;
+      qw = document.getElementById("qw").value;
+
+      parts = document.getElementById("bodyparts").value;
+
+      const quat = new Quaternion(qx, qy, qz, qw);
+      const quatNormal = QuaternionNormalize(quat);
+
+      const rotationParts = boneMap.get(parts).bone.quaternion;
+
+      rotationParts._x = quatNormal.x;
+      rotationParts._y = quatNormal.y;
+      rotationParts._z = quatNormal.z;
+      rotationParts._w = quatNormal.w;
+
+      document.getElementById("qx").value = quatNormal.x;
+      document.getElementById("qy").value = quatNormal.y;
+      document.getElementById("qz").value = quatNormal.z;
+      document.getElementById("qw").value = quatNormal.w;
+    });
+  }
+
+  function rotateParts() {
+    if(method === "") return;
+    switch (method) {
+      case "Vector":
+
+    }
+  }
+
+  document.getElementById("bodyparts").addEventListener('change', function() {
+    parts = document.getElementById("bodyparts").value;
+
+    const rotationParts = buoneMap.get(parts).bone.quaternion;
+
+    const quat = new Quaternion(rotationParts._x, rotationParts._y, rotationParts._z, rotationParts._w);
+
+    document.getElementById("qx").value = quat.x;
+    document.getElementById("qy").value = quat.y;
+    document.getElementById("qz").value = quat.z;
+    document.getElementById("qw").vale = quat.w;
+  });
+
+  function onRadioButtonChange() {
+    document.getElementById("btn").disabled = false;
+
+    radiobtn1 = document.getElementById("r1");
+    radiobtn2 = document.getElementById("r2");
+    radiobtn3 = document.getElementById("r3");
+
+    target = document.getElementById("output");
+
+    if (radiobtn1.checked == true) {
+      method = "Quaternion";
+      limitFunction(method);
+      document.getElementById("btn").innerHTML = "クォータニオンでスライダー動かすと回転";
+      document.getElementById("btn").disabled = true;
+    }
+    else if (radiobtn2.checked == true) {
+      method = "Vector";
+      limitFunction(method);
+      document.getElementById("btn").innerHTML = "ベクトルで回転";
+    }
+    else if (radiobtn3.checked == true) {
+      method = "Matrix";
+      limitFunction(method)
+      document.getElementById("btn").innerHTML = "行列で回転";
+    }
+  }
+
+  function limitFunction(method) {
+    switch (method) {
+      case "Quaternion":
+        document.getElementById("qx").disabled = false;
+        document.getElementById("qy").disabled = false;
+        document.getElementById("qz").disabled = false;
+        document.getElementById("qw").disabled = false;
+        document.getElementById("angle").disabled = true;
+        document.getElementById("vx").disabled = true;
+        document.getElementById("vy").disabled = true;
+        document.getElementById("vz").disabled = true;
+        document.getElementById("a11").disabled = true;
+        document.getElementById("a12").disabled = true;
+        document.getElementById("a13").disabled = true;
+        document.getElementById("a14").disabled = true;
+        document.getElementById("a21").disabled = true;
+        document.getElementById("a22").disabled = true;
+        document.getElementById("a23").disabled = true;
+        document.getElementById("a24").disabled = true;
+        document.getElementById("a31").disabled = true;
+        document.getElementById("a32").disabled = true;
+        document.getElementById("a33").disabled = true;
+        document.getElementById("a34").disabled = true;
+        document.getElementById("a41").disabled = true;
+        document.getElementById("a42").disabled = true;
+        document.getElementById("a43").disabled = true;
+        document.getElementById("a44").disabled = true;
+        break;
+      case "Vector":
+        document.getElementById("qx").disabled = true;
+        document.getElementById("qy").disabled = true;
+        document.getElementById("qz").disabled = true;
+        document.getElementById("qw").disabled = true;
+        document.getElementById("angle").disabled = false;
+        document.getElementById("vx").disabled = false;
+        document.getElementById("vy").disabled = false;
+        document.getElementById("vz").disabled = false;
+        document.getElementById("a11").disabled = true;
+        document.getElementById("a12").disabled = true;
+        document.getElementById("a13").disabled = true;
+        document.getElementById("a14").disabled = true;
+        document.getElementById("a21").disabled = true;
+        document.getElementById("a22").disabled = true;
+        document.getElementById("a23").disabled = true;
+        document.getElementById("a24").disabled = true;
+        document.getElementById("a31").disabled = true;
+        document.getElementById("a32").disabled = true;
+        document.getElementById("a33").disabled = true;
+        document.getElementById("a34").disabled = true;
+        document.getElementById("a41").disabled = true;
+        document.getElementById("a42").disabled = true;
+        document.getElementById("a43").disabled = true;
+        document.getElementById("a44").disabled = true;
+        break;
+      case "Matrix":
+        document.getElementById("qx").disabled = true;
+        document.getElementById("qy").disabled = true;
+        document.getElementById("qz").disabled = true;
+        document.getElementById("qw").disabled = true;
+        document.getElementById("angle").disabled = true;
+        document.getElementById("vx").disabled = true;
+        document.getElementById("vy").disabled = true;
+        document.getElementById("vz").disabled = true;
+        document.getElementById("a11").disabled = false;
+        document.getElementById("a12").disabled = false;
+        document.getElementById("a13").disabled = false;
+        document.getElementById("a14").disabled = false;
+        document.getElementById("a21").disabled = false;
+        document.getElementById("a22").disabled = false;
+        document.getElementById("a23").disabled = false;
+        document.getElementById("a24").disabled = false;
+        document.getElementById("a31").disabled = false;
+        document.getElementById("a32").disabled = false;
+        document.getElementById("a33").disabled = false;
+        document.getElementById("a34").disabled = false;
+        document.getElementById("a41").disabled = false;
+        document.getElementById("a42").disabled = false;
+        document.getElementById("a43").disabled = false;
+        document.getElementById("a44").disabled = false;
+        break;
+    }
+  }
+
+  window.onload = setup;
+</script>
 </html>
