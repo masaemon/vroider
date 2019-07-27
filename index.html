@@ -26,7 +26,7 @@
 
     .slider:active {
       outline: none;
-     }
+    }
 
     .slider::-webkit-slider-thumb {
        -webkit-appearance: none;
@@ -54,13 +54,23 @@
   <section class="section">
     <div class="container">
       <h1 class="title is-2">
-        クォータニオン
+        Vroidモデルを回転させる
       </h1>
       <div>
-        下のスライダーからクォータニオンの値を操作できます。
-        また、角度と軸のベクトルを入力することで、回転できます。
+        下のラジオボタンで回転させる方法を選びましょう。
+      </div>
+      <div>
+        クォータニオンはスライダーで操作できます。
+      </div>
+      <div>
+        行列や回転角度とベクトルは、数値を入力したあとボタンを押すと回転します。
+      </div>
+      <div>
+        自動回転を選ぶと選択された部位が自動で回転します。
       </div>
     </div>
+    <br>
+    <br>
     <div id="app" class="container">
       <div class="columns">
         <div class="column is-two-thirds">
@@ -84,27 +94,26 @@
             <span class="title is-4">
               X:
             </span>
-            <span id="valueqx" class="title is-4">
-            </span>
-            <input type="range" id="qx" class="slider" value="0" min="-1" max="1" data-unit="%" step="any">
+            <span id="valueqx" class="title is-4">0</span>
+            <input type="range" id="qx" class="slider" value="0" min="-1" max="1" data-unit="%" step="any" disabled>
             <br>
             <span class="title is-4">
               Y:
             </span>
-            <span id="valueqy" class="title is-4"></span>
-            <input type="range" id="qy" class="slider" value="0" min="-1" max="1" data-unit="%" step="any">
+            <span id="valueqy" class="title is-4">0</span>
+            <input type="range" id="qy" class="slider" value="0" min="-1" max="1" data-unit="%" step="any" disabled>
             <br>
             <span class="title is-4">
               Z:
             </span>
-            <span id="valueqz" class="title is-4"></span>
-            <input type="range" id="qz" class="slider" value="0" min="-1" max="1" data-unit="%" step="any">
+            <span id="valueqz" class="title is-4">0</span>
+            <input type="range" id="qz" class="slider" value="0" min="-1" max="1" data-unit="%" step="any" disabled>
             <br>
             <span class="title is-4">
               W:
             </span>
-            <span id="valueqw" class="title is-4"></span>
-            <input type="range" id="qw" class="slider" value="1" min="-1" max="1" data-unit="%" step="any">
+            <span id="valueqw" class="title is-4">1</span>
+            <input type="range" id="qw" class="slider" value="1" min="-1" max="1" data-unit="%" step="any" disabled>
             <br>
             <br>
 
@@ -114,77 +123,77 @@
             <span class="title is-5">
               回転角度(度)
             </span>
-            <input id="angle" class="input" type="text" placeholder="angle">
+            <input id="angle" class="input" type="text" placeholder="angle" disabled>
             <span class="title is-5">
               VectorX
             </span>
-            <input id="vx" class="input" type="text" placeholder="vecX">
+            <input id="vx" class="input" type="text" placeholder="vecX" disabled>
             <span class="title is-5">
               VectorY
             </span>
-            <input id="vy" class="input" type="text" placeholder="vecY">
+            <input id="vy" class="input" type="text" placeholder="vecY" disabled>
             <span class="title is-5">
               VectorZ
             </span>
-            <input id="vz" class="input" type="text" placeholder="vecZ">
+            <input id="vz" class="input" type="text" placeholder="vecZ" disabled>
             <br>
             <br>
 
             <p class="title is-4">回転行列</p>
             <div class="columns">
               <div class="column">
-                <input id="a11" class="input" type="text" placeholder="0">
+                <input id="a11" class="input" type="text" placeholder="0" disabled>
               </div>
               <div class="column">
-                <input id="a12" class="input" type="text" placeholder="0">
+                <input id="a12" class="input" type="text" placeholder="0" disabled>
               </div>
               <div class="column">
-                <input id="a13" class="input" type="text" placeholder="0">
+                <input id="a13" class="input" type="text" placeholder="0" disabled>
               </div>
               <div class="column">
-                <input id="a14" class="input" type="text" placeholder="0">
-              </div>
-            </div>
-            <div class="columns">
-              <div class="column">
-                <input id="a21" class="input" type="text" placeholder="0">
-              </div>
-              <div class="column">
-                <input id="a22" class="input" type="text" placeholder="0">
-              </div>
-              <div class="column">
-                <input id="a23" class="input" type="text" placeholder="0">
-              </div>
-              <div class="column">
-                <input id="a24" class="input" type="text" placeholder="0">
+                <input id="a14" class="input" type="text" placeholder="0" disabled>
               </div>
             </div>
             <div class="columns">
               <div class="column">
-                <input id="a31" class="input" type="text" placeholder="0">
+                <input id="a21" class="input" type="text" placeholder="0" disabled>
               </div>
               <div class="column">
-                <input id="a32" class="input" type="text" placeholder="0">
+                <input id="a22" class="input" type="text" placeholder="0" disabled>
               </div>
               <div class="column">
-                <input id="a33" class="input" type="text" placeholder="0">
+                <input id="a23" class="input" type="text" placeholder="0" disabled>
               </div>
               <div class="column">
-                <input id="a34" class="input" type="text" placeholder="0">
+                <input id="a24" class="input" type="text" placeholder="0" disabled>
               </div>
             </div>
             <div class="columns">
               <div class="column">
-                <input id="a41" class="input" type="text" placeholder="0">
+                <input id="a31" class="input" type="text" placeholder="0" disabled>
               </div>
               <div class="column">
-                <input id="a42" class="input" type="text" placeholder="0">
+                <input id="a32" class="input" type="text" placeholder="0" disabled>
               </div>
               <div class="column">
-                <input id="a43" class="input" type="text" placeholder="0">
+                <input id="a33" class="input" type="text" placeholder="0" disabled>
               </div>
               <div class="column">
-                <input id="a44" class="input" type="text" placeholder="0">
+                <input id="a34" class="input" type="text" placeholder="0" disabled>
+              </div>
+            </div>
+            <div class="columns">
+              <div class="column">
+                <input id="a41" class="input" type="text" placeholder="0" disabled>
+              </div>
+              <div class="column">
+                <input id="a42" class="input" type="text" placeholder="0" disabled>
+              </div>
+              <div class="column">
+                <input id="a43" class="input" type="text" placeholder="0" disabled>
+              </div>
+              <div class="column">
+                <input id="a44" class="input" type="text" placeholder="0" disabled>
               </div>
             </div>
 
@@ -220,6 +229,16 @@
                 >
                 回転行列
               </label>
+              <br>
+              <label class="radio">
+                <input
+                        id="r4"
+                        type="radio"
+                        name="method"
+                        onchange="onRadioButtonChange()"
+                >
+                自動回転
+              </label>
             </div>
             <br>
             <button id="btn" class="button is-info" onclick="rotateParts()" disabled>
@@ -242,6 +261,17 @@
     return Math.cos(x);
   }
 
+  //サイン逆関数
+  function arcsin(x) {
+    return Math.asin(x);
+  }
+
+  //コサイン逆関数
+  function arccos(x) {
+    return Math.acos(x);
+  }
+
+
   //ルート
   function sqrt(x) {
     return Math.sqrt(x);
@@ -254,6 +284,15 @@
       this.y = y;
       this.z = z;
     }
+  }
+
+  function NormalizeVector(vec) {
+    const {x, y, z} = vec;
+    const d = sqrt(x*x + y*y + z*z);
+    const vx = x / d;
+    const vy = y / d;
+    const vz = z / d;
+    return new Vector(vx, vy, vz);
   }
 
   //クォータニオンクラス
@@ -310,8 +349,6 @@
       this.a43 = a43;
       this.a44 = a44;
     }
-
-
   }
 
   function QuaternionNormalize(q) {
@@ -354,8 +391,151 @@
     return new Vector(h2.x, h2.y, h2.z);
   }
 
+  //行列からクォータニオンへ
+  function MatrixToQuaternion(matrix) {
+    const {a11, a12, a13,
+      a21, a22, a23,
+      a31, a32, a33} = matrix;
+
+    let x, y, z, w;
+
+    const fourWSquaredMinus1 = a11 + a22 + a33 + 1;
+    const fourXSquaredMinus1 = a11 - a22 - a33 + 1;
+    const fourYSquaredMinus1 = a22 - a11 - a33 + 1;
+    const fourZSquaredMinus1 = a33 - a22 - a11 + 1;
+
+    let biggestIndex = 0;
+    let fourBiggestSquaredMinus1 = fourWSquaredMinus1;
+
+    if(fourXSquaredMinus1 > fourBiggestSquaredMinus1) {
+      fourBiggestSquaredMinus1 = fourXSquaredMinus1;
+      biggestIndex = 1;
+    }
+    if(fourYSquaredMinus1 > fourBiggestSquaredMinus1) {
+      fourBiggestSquaredMinus1 = fourYSquaredMinus1;
+      biggestIndex = 2;
+    }
+    if(fourZSquaredMinus1 > fourBiggestSquaredMinus1) {
+      fourBiggestSquaredMinus1 = fourZSquaredMinus1;
+      biggestIndex = 3;
+    }
+
+    const value = fourBiggestSquaredMinus1;
+
+    const biggestVal = sqrt(value) * 0.5;
+    const mult = 0.25 / biggestVal;
+
+    switch (biggestIndex) {
+      case 0:
+        w = biggestVal;
+        x = (a23 - a32) * mult;
+        y = (a31 - a13) * mult;
+        z = (a12 - a21) * mult;
+        break;
+
+      case 1:
+        x = biggestVal;
+        w = (a23 - a32) * mult;
+        y = (a12 + a21) * mult;
+        z = (a31 + a13) * mult;
+        break;
+
+      case 2:
+        y = biggestVal;
+        w = (a31 - a13) * mult;
+        x = (a12 + a21) * mult;
+        z = (a23 + a32) * mult;
+        break;
+
+      case 3:
+        z = biggestVal;
+        w = (a12 - a21) * mult;
+        x = (a31 + a13) * mult;
+        y = (a23 + a32) * mult;
+        break;
+    }
+
+    return new Quaternion(x, y, z, w);
+  }
+
+  //クォータニオンから行列へ
+  function QuaternionToMatrix(q) {
+    const {x, y, z, w} = q;
+    const a11 = 1 - 2*y*y - 2*z*z;
+    const a12 = 2*x*y + 2*w*z;
+    const a13 = 2*x*z - 2*w*y;
+    const a14 = 0;
+    const a21 = 2*x*y - 2*w*z;
+    const a22 = 1 - 2*x*x - 2*z*z;
+    const a23 = 2*y*z + 2*w*x;
+    const a24 = 0;
+    const a31 = 2*x*z + 2*w*y;
+    const a32 = 2*y*z - 2*w*x;
+    const a33 = 1 - 2*x*x - 2*y*y;
+    const a34 = 0;
+    const a41 = 0;
+    const a42 = 0;
+    const a43 = 0;
+    const a44 = 1;
+
+    return new Matrix4d(a11, a12, a13, a14,
+      a21, a22, a23, a24,
+      a31, a32, a33, a34,
+      a41, a42, a43, a44,
+    );
+  }
+
+  //クォータニオンから回転角度取得
+  function QuaternionToRotationAngle(q) {
+    const Rad = arccos(q.w) * 2;
+    const Angle = 360 * Rad / (Math.PI * 2);
+    return Angle;
+  }
+
+  //クォータニオンから軸のベクトルを取得
+  function QuaternionToVector(q, angle) {
+    const HalfAngle = angle / 2;
+    const Rad = HalfAngle * Math.PI / 180;
+    const a = q.x / Rad;
+    const b = q.y / Rad;
+    const c = q.z / Rad;
+
+    return new Vector(a, b, c);
+  }
+
+  // ランダムな整数
+  function getRandomInt(max) {
+    return Math.floor(Math.random() * Math.floor(max));
+  }
+
+  //////////////////////////////////////////////////////////////////////////////////
+  //ベクトル回転
+  let vecx;
+  let vecy;
+  let vecz;
+  let vector;
+  let angle;
+
+  //クォータニオン
+  let qx;
+  let qy;
+  let qz;
+  let qw;
+  let quat;
+
+  //行列
+  let matrix;
+
   //回転方法
   let method;
+
+  //自動回転値
+  let automoveValue = 0;
+  let position = "x";
+
+  //自動回転
+  let autoRotation = false;
+  let initAutoRotate = false;
 
   //画面
   let width;
@@ -395,7 +575,7 @@
     });
 
     width = parent.clientWidth;
-    height = 800;
+    height = 1300;
     renderer.setPixelRatio(window.devicePixelRatio);
     renderer.setSize(width, height);
     renderer.setClearColor(0xf6f6f6, 1.0);
@@ -429,7 +609,6 @@
     //vroidを読み込むもの
     const loader = new THREE.VRMLoader();
     loader.load(humanoidModel.leem, function(vrm) {
-      console.log(vrm);
       bones = vrm.parser.json.extensions.VRM.humanoid.humanBones;
 
       //ボーンとモデルの紐付け
@@ -449,9 +628,8 @@
         op.text = target.bone;
         document.getElementById("bodyparts").appendChild(op);
       }
+      RESOURCE_LOADED = true;
       scene.add(vrm.scene);
-
-      RESOURCES_LOADED = true;
     });
 
     draw();
@@ -459,6 +637,20 @@
 
   //ループするところ
   function draw() {
+    if(RESOURCE_LOADED) {
+      if(autoRotation) {
+        autoRotationParts(automoveValue, position);
+        automoveValue += 0.001;
+        if(automoveValue >= 1.0) {
+          automoveValue = -1.0;
+        }
+      } else {
+        if(!initAutoRotate) {
+          autoRotateInit();
+        }
+      }
+    }
+
     renderer.render(scene, camera);
     requestAnimationFrame(draw);
   }
@@ -477,6 +669,7 @@
     renderer.setClearColor(0xf6f6f6, 1.0);
   }
 
+  ///////////////////////////////////////////////////////////////////////////////
   // スライダー
   const sliders = document.getElementsByClassName("slider");
   for(let i = 0; i < 4; i++) {
@@ -489,7 +682,7 @@
 
       parts = document.getElementById("bodyparts").value;
 
-      const quat = new Quaternion(qx, qy, qz, qw);
+      quat = new Quaternion(qx, qy, qz, qw);
       const quatNormal = QuaternionNormalize(quat);
 
       const rotationParts = boneMap.get(parts).bone.quaternion;
@@ -499,42 +692,274 @@
       rotationParts._z = quatNormal.z;
       rotationParts._w = quatNormal.w;
 
+      const mt = QuaternionToMatrix(quatNormal);
+      document.getElementById("a11").value = mt.a11;
+      document.getElementById("a12").value = mt.a12;
+      document.getElementById("a13").value = mt.a13;
+      document.getElementById("a14").value = mt.a14;
+      document.getElementById("a21").value = mt.a21;
+      document.getElementById("a22").value = mt.a22;
+      document.getElementById("a23").value = mt.a23;
+      document.getElementById("a24").value = mt.a24;
+      document.getElementById("a31").value = mt.a31;
+      document.getElementById("a32").value = mt.a32;
+      document.getElementById("a33").value = mt.a33;
+      document.getElementById("a34").value = mt.a34;
+      document.getElementById("a41").value = mt.a41;
+      document.getElementById("a42").value = mt.a42;
+      document.getElementById("a43").value = mt.a43;
+      document.getElementById("a44").value = mt.a44;
+
       document.getElementById("qx").value = quatNormal.x;
       document.getElementById("qy").value = quatNormal.y;
       document.getElementById("qz").value = quatNormal.z;
       document.getElementById("qw").value = quatNormal.w;
+      document.getElementById("valueqx").innerHTML = quatNormal.x;
+      document.getElementById("valueqy").innerHTML = quatNormal.y;
+      document.getElementById("valueqz").innerHTML = quatNormal.z;
+      document.getElementById("valueqw").innerHTML = quatNormal.w;
+
+      const angle = QuaternionToRotationAngle(quatNormal);
+      const vec = QuaternionToVector(quatNormal, angle);
+      const normalVector = NormalizeVector(vec);
+
+      document.getElementById("angle").value = angle;
+      document.getElementById("vx").value = normalVector.x;
+      document.getElementById("vy").value = normalVector.y;
+      document.getElementById("vz").value = normalVector.z;
     });
   }
+  
+  function autoRotateInit() {
+    automoveValue = -1.0;
+    const randomNum = getRandomInt(3);
+    switch (randomNum) {
+      case 0:
+        position = "x";
+        break;
+      case 1:
+        position = "y";
+        break;
+      case 2:
+        position = "z";
+        break;
+    }
 
+    initAutoRotate = true;
+  }
+
+  //自動回転
+  function autoRotationParts(value, axis) {
+    parts = document.getElementById("bodyparts").value;
+    const rotationParts = boneMap.get(parts).bone.quaternion;
+
+    let x = 0;
+    let y = 0;
+    let z = 0;
+    let w = 1;
+
+    switch (axis) {
+      case "x":
+        x = value;
+        break;
+      case "y":
+        y = value;
+        break;
+      case "z":
+        y = value;
+        break;
+    }
+
+    const q = new Quaternion(x, y, z, w);
+    const quatNormal = QuaternionNormalize(q);
+
+    rotationParts._x = quatNormal.x;
+    rotationParts._y = quatNormal.y;
+    rotationParts._z = quatNormal.z;
+    rotationParts._w = quatNormal.w;
+
+    const mt = QuaternionToMatrix(quatNormal);
+    document.getElementById("a11").value = mt.a11;
+    document.getElementById("a12").value = mt.a12;
+    document.getElementById("a13").value = mt.a13;
+    document.getElementById("a14").value = mt.a14;
+    document.getElementById("a21").value = mt.a21;
+    document.getElementById("a22").value = mt.a22;
+    document.getElementById("a23").value = mt.a23;
+    document.getElementById("a24").value = mt.a24;
+    document.getElementById("a31").value = mt.a31;
+    document.getElementById("a32").value = mt.a32;
+    document.getElementById("a33").value = mt.a33;
+    document.getElementById("a34").value = mt.a34;
+    document.getElementById("a41").value = mt.a41;
+    document.getElementById("a42").value = mt.a42;
+    document.getElementById("a43").value = mt.a43;
+    document.getElementById("a44").value = mt.a44;
+
+    document.getElementById("qx").value = quatNormal.x;
+    document.getElementById("qy").value = quatNormal.y;
+    document.getElementById("qz").value = quatNormal.z;
+    document.getElementById("qw").value = quatNormal.w;
+    document.getElementById("valueqx").innerHTML = quatNormal.x;
+    document.getElementById("valueqy").innerHTML = quatNormal.y;
+    document.getElementById("valueqz").innerHTML = quatNormal.z;
+    document.getElementById("valueqw").innerHTML = quatNormal.w;
+
+    const angle = QuaternionToRotationAngle(quatNormal);
+    const vec = QuaternionToVector(quatNormal, angle);
+    const normalVector = NormalizeVector(vec);
+
+    document.getElementById("angle").value = angle;
+    document.getElementById("vx").value = normalVector.x;
+    document.getElementById("vy").value = normalVector.y;
+    document.getElementById("vz").value = normalVector.z;
+
+
+  }
+
+  //ボタンを押した時の回転
   function rotateParts() {
     if(method === "") return;
     switch (method) {
       case "Vector":
-
+        angle = parseFloat(document.getElementById("angle").value);
+        vecx = parseFloat(document.getElementById("vx").value);
+        vecy = parseFloat(document.getElementById("vy").value);
+        vecz = parseFloat(document.getElementById("vz").value);
+        vector = new Vector(vecx, vecy, vecz);
+        rotateVec(vector, angle);
+        break;
+      case "Matrix":
+        const a11 = parseFloat(document.getElementById("a11").value);
+        const a12 = parseFloat(document.getElementById("a12").value);
+        const a13 = parseFloat(document.getElementById("a13").value);
+        const a14 = parseFloat(document.getElementById("a14").value);
+        const a21 = parseFloat(document.getElementById("a21").value);
+        const a22 = parseFloat(document.getElementById("a22").value);
+        const a23 = parseFloat(document.getElementById("a23").value);
+        const a24 = parseFloat(document.getElementById("a24").value);
+        const a31 = parseFloat(document.getElementById("a31").value);
+        const a32 = parseFloat(document.getElementById("a32").value);
+        const a33 = parseFloat(document.getElementById("a33").value);
+        const a34 = parseFloat(document.getElementById("a34").value);
+        const a41 = parseFloat(document.getElementById("a41").value);
+        const a42 = parseFloat(document.getElementById("a42").value);
+        const a43 = parseFloat(document.getElementById("a43").value);
+        const a44 = parseFloat(document.getElementById("a44").value);
+        matrix = new Matrix4d(a11, a12, a13, a14,
+          a21, a22, a23, a24,
+          a31, a32, a33, a34,
+          a41, a42, a43, a44);
+        rotateMatrix(matrix);
+        break;
+      case "Auto":
+        autoRotation = true;
+        break;
     }
   }
 
-  document.getElementById("bodyparts").addEventListener('change', function() {
+  //ベクトル回転
+  function rotateVec(vec, angle) {
+    const ang = angle % 360;
+    const rad = Math.PI * ang / 180;
+
+    quat = Quaternion.AngleAxis(rad,vec);
+    quat = QuaternionNormalize(quat);
+
     parts = document.getElementById("bodyparts").value;
-
-    const rotationParts = buoneMap.get(parts).bone.quaternion;
-
-    const quat = new Quaternion(rotationParts._x, rotationParts._y, rotationParts._z, rotationParts._w);
+    const rotationParts = boneMap.get(parts).bone.quaternion;
 
     document.getElementById("qx").value = quat.x;
     document.getElementById("qy").value = quat.y;
     document.getElementById("qz").value = quat.z;
-    document.getElementById("qw").vale = quat.w;
+    document.getElementById("qw").value = quat.w;
+    document.getElementById("valueqx").innerHTML = quat.x;
+    document.getElementById("valueqy").innerHTML = quat.y;
+    document.getElementById("valueqz").innerHTML = quat.z;
+    document.getElementById("valueqw").innerHTML = quat.w;
+
+    rotationParts._x = quat.x;
+    rotationParts._y = quat.y;
+    rotationParts._z = quat.z;
+    rotationParts._w = quat.w;
+
+    const mt = QuaternionToMatrix(quat);
+    document.getElementById("a11").value = mt.a11;
+    document.getElementById("a12").value = mt.a12;
+    document.getElementById("a13").value = mt.a13;
+    document.getElementById("a14").value = mt.a14;
+    document.getElementById("a21").value = mt.a21;
+    document.getElementById("a22").value = mt.a22;
+    document.getElementById("a23").value = mt.a23;
+    document.getElementById("a24").value = mt.a24;
+    document.getElementById("a31").value = mt.a31;
+    document.getElementById("a32").value = mt.a32;
+    document.getElementById("a33").value = mt.a33;
+    document.getElementById("a34").value = mt.a34;
+    document.getElementById("a41").value = mt.a41;
+    document.getElementById("a42").value = mt.a42;
+    document.getElementById("a43").value = mt.a43;
+    document.getElementById("a44").value = mt.a44;
+  }
+
+  //行列回転
+  function rotateMatrix(matrix) {
+    const mtoq = MatrixToQuaternion(matrix);
+    const quat = QuaternionNormalize(mtoq);
+
+    parts = document.getElementById("bodyparts").value;
+    const rotationParts = boneMap.get(parts).bone.quaternion;
+
+    document.getElementById("qx").value = quat.x;
+    document.getElementById("qy").value = quat.y;
+    document.getElementById("qz").value = quat.z;
+    document.getElementById("qw").value = quat.w;
+    document.getElementById("valueqx").innerHTML = quat.x;
+    document.getElementById("valueqy").innerHTML = quat.y;
+    document.getElementById("valueqz").innerHTML = quat.z;
+    document.getElementById("valueqw").innerHTML = quat.w;
+
+    rotationParts._x = quat.x;
+    rotationParts._y = quat.y;
+    rotationParts._z = quat.z;
+    rotationParts._w = quat.w;
+
+    const angle = QuaternionToRotationAngle(quat);
+    const vec = QuaternionToVector(quat, angle);
+    const normalVector = NormalizeVector(vec);
+
+    document.getElementById("angle").value = angle;
+    document.getElementById("vx").value = normalVector.x;
+    document.getElementById("vy").value = normalVector.y;
+    document.getElementById("vz").value = normalVector.z;
+  }
+
+  //パーツの変換
+  document.getElementById("bodyparts").addEventListener('change', function() {
+    parts = document.getElementById("bodyparts").value;
+
+    const rotationParts = boneMap.get(parts).bone.quaternion;
+
+    quat = new Quaternion(rotationParts._x, rotationParts._y, rotationParts._z, rotationParts._w);
+
+    document.getElementById("qx").value = quat.x;
+    document.getElementById("qy").value = quat.y;
+    document.getElementById("qz").value = quat.z;
+    document.getElementById("qw").value = quat.w;
+    document.getElementById("valueqx").innerHTML = quat.x;
+    document.getElementById("valueqy").innerHTML = quat.y;
+    document.getElementById("valueqz").innerHTML = quat.z;
+    document.getElementById("valueqw").innerHTML = quat.w;
   });
 
   function onRadioButtonChange() {
     document.getElementById("btn").disabled = false;
+    autoRotation = false;
 
-    radiobtn1 = document.getElementById("r1");
-    radiobtn2 = document.getElementById("r2");
-    radiobtn3 = document.getElementById("r3");
-
-    target = document.getElementById("output");
+    const radiobtn1 = document.getElementById("r1");
+    const radiobtn2 = document.getElementById("r2");
+    const radiobtn3 = document.getElementById("r3");
+    const radiobtn4 = document.getElementById("r4");
 
     if (radiobtn1.checked == true) {
       method = "Quaternion";
@@ -551,6 +976,11 @@
       method = "Matrix";
       limitFunction(method)
       document.getElementById("btn").innerHTML = "行列で回転";
+    } else if(radiobtn4.checked == true) {
+      method = "Auto";
+      limitFunction(method);
+      initAutoRotate();
+      document.getElementById("btn").innerHTML = "自動回転開始";
     }
   }
 
@@ -633,6 +1063,32 @@
         document.getElementById("a42").disabled = false;
         document.getElementById("a43").disabled = false;
         document.getElementById("a44").disabled = false;
+        break;
+      case "Auto":
+        document.getElementById("qx").disabled = true;
+        document.getElementById("qy").disabled = true;
+        document.getElementById("qz").disabled = true;
+        document.getElementById("qw").disabled = true;
+        document.getElementById("angle").disabled = true;
+        document.getElementById("vx").disabled = true;
+        document.getElementById("vy").disabled = true;
+        document.getElementById("vz").disabled = true;
+        document.getElementById("a11").disabled = true;
+        document.getElementById("a12").disabled = true;
+        document.getElementById("a13").disabled = true;
+        document.getElementById("a14").disabled = true;
+        document.getElementById("a21").disabled = true;
+        document.getElementById("a22").disabled = true;
+        document.getElementById("a23").disabled = true;
+        document.getElementById("a24").disabled = true;
+        document.getElementById("a31").disabled = true;
+        document.getElementById("a32").disabled = true;
+        document.getElementById("a33").disabled = true;
+        document.getElementById("a34").disabled = true;
+        document.getElementById("a41").disabled = true;
+        document.getElementById("a42").disabled = true;
+        document.getElementById("a43").disabled = true;
+        document.getElementById("a44").disabled = true;
         break;
     }
   }
